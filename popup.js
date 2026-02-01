@@ -1,3 +1,8 @@
+// =========================
+// popup.js
+// =========================
+//Desenvolvido por Leonardo Cuervo
+
 document.addEventListener("DOMContentLoaded", async () => {
   const [tab] = await chrome.tabs.query({
     active: true,
@@ -17,24 +22,22 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("currentPage").textContent =
     `${result.diagnostico} (${result.score}%)`;
 
-  // BOTÃO PICKER
   document
     .getElementById("btnAnalisarElemento")
     .addEventListener("click", async () => {
 
-      // 1️⃣ INJETA o selectorpick.js
+
       await chrome.scripting.executeScript({
         target: { tabId: tab.id },
         files: ["selectorpick.js"]
       });
 
-      // 2️⃣ ATIVA o picker
+
       await chrome.scripting.executeScript({
         target: { tabId: tab.id },
         func: () => window.__RPA_PICKER__?.startElementPicker()
       });
 
-      // 3️⃣ fecha popup (agora sim)
       window.close();
     });
 });

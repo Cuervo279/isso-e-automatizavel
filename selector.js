@@ -1,8 +1,8 @@
 // =========================
 // selector.js
 // =========================
+//Desenvolvido por Leonardo Cuervo
 
-// 🔹 BOOTSTRAP DO POPUP
 document.addEventListener("DOMContentLoaded", () => {
   console.log("selector.js carregado");
 
@@ -45,14 +45,12 @@ function mapSelectors() {
     if (el.getAttribute("aria-label"))
       return `${el.tagName.toLowerCase()}[aria-label="${el.getAttribute("aria-label")}"]`;
 
-    // label associado
     if (el.id) {
       const label = document.querySelector(`label[for="${el.id}"]`);
       if (label)
         return `label:contains("${label.innerText.trim()}") + ${el.tagName.toLowerCase()}`;
     }
 
-    // texto próximo (heurística RPA)
     const parentText = el.closest("label, div, td");
     if (parentText) {
       const txt = parentText.innerText.trim();
@@ -60,7 +58,6 @@ function mapSelectors() {
         return `${el.tagName.toLowerCase()} >> text="${txt}"`;
     }
 
-    // fallback
     if (el.className && typeof el.className === "string") {
       const cls = el.className.split(" ").filter(Boolean)[0];
       if (cls)
@@ -116,7 +113,6 @@ function renderSelectors(list, container) {
 
   console.log("Elementos mapeados:", list);
 
-  // 🔹 COPIAR SELECTOR
   container.querySelectorAll(".copy-btn").forEach((btn, i) => {
     btn.onclick = () => {
       navigator.clipboard.writeText(list[i].selector);
@@ -125,7 +121,6 @@ function renderSelectors(list, container) {
     };
   });
 
-  // 🔹 HIGHLIGHT
   container.querySelectorAll("li").forEach(li => {
     const index = li.dataset.i;
 

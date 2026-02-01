@@ -1,4 +1,6 @@
 // engine.js
+//Desenvolvido por Leonardo Cuervo
+
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("btnAnalisarPagina");
   const resultsDiv = document.getElementById("results");

@@ -1,3 +1,8 @@
+// =========================
+// content.js
+// =========================
+//Desenvolvido por Leonardo Cuervo
+
 function searchContent() {
 
   function getSelector(el) {
@@ -47,6 +52,6 @@ function searchContent() {
   score = Math.max(score, 0);
   const diagnostico = diagnosticoPorScore(score);
 
-  // 👇 ISSO É O MAIS IMPORTANTE
+  //normaliza o resultado
   return { score, diagnostico, riscos };
 }

@@ -1,3 +1,6 @@
+// BACKGROUND.JS
+//Desenvolvido por Leonardo Cuervo
+
 chrome.contextMenus.create({
   id: "copy-selector",
   title: "Copiar selector",

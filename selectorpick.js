@@ -2,9 +2,6 @@
 // selectorpick.js
 // ===============================
 
-// let pickingMode = false;
-// let lastHighlighted = null;
-
 var pickingMode = pickingMode || false;
 var lastHighlighted = lastHighlighted || null;
 
@@ -95,25 +92,29 @@ function removeHighlight() {
 function bestSelector(el) {
   if (!el || el === document.body) return "body";
 
+  const stableAttrs = ["ng-reflect-name", "data-testid", "data-start", "data-end"];
+  for (const attr of stableAttrs) {
+    if (el.hasAttribute(attr)) {
+      return `${el.tagName.toLowerCase()}[${attr}="${el.getAttribute(attr)}"]`;
+    }
+  }
+
   if (el.id) return `#${el.id}`;
+
   if (el.name) return `${el.tagName.toLowerCase()}[name="${el.name}"]`;
   if (el.getAttribute("aria-label")) return `${el.tagName.toLowerCase()}[aria-label="${el.getAttribute("aria-label")}"]`;
 
-  const dataSel = dataAttributesSelector(el);
-  if (dataSel) {
-    const parent = el.parentElement;
-    const parentDataSel = parent ? dataAttributesSelector(parent) : null;
-    if (parentDataSel) return `${parentDataSel} > ${dataSel}`;
-    return dataSel;
-  }
+  const dataSelector = dataAttributesSelector(el);
+  if (dataSelector) return dataSelector;
 
   if (el.className && typeof el.className === "string") {
     const cls = el.className.split(" ").filter(Boolean)[0];
     if (cls) return `${el.tagName.toLowerCase()}.${cls}`;
   }
-   console.log('teste')
+
   return el.tagName.toLowerCase();
 }
+
 
 
 
@@ -148,7 +149,7 @@ function dataAttributesSelector(el) {
 
   const dataAttrs = Array.from(el.attributes)
     .filter(attr => attr.name.startsWith("data-") && attr.value.length < 30)
-    .slice(0, 3); // limitar no máximo 3
+    .slice(0, 3);
 
   if (!dataAttrs.length) return null;
 
