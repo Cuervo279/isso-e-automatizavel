@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>RPA Check</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  </head>
+  <body>
+    <header>
+      <div class="logo">🤖 Isso é automatizável?</div>
+      <div><img class="icons" src="./icons/help.svg" alt="Icone de café"></div>
+    </header>
+    
+    <section class="info">
+      <div>
+        <p id="currentUrl"></p>
+      </div>
+      <div>
+        <p id="currentPage"></p>
+      </div>
+      <div class="buttons-container">
+        <button id="btnAnalisarPagina" class="btn">Analisar Página</button>
+        <button id="btnAnalisarElemento" class="btn">Analisar Elemento</button>
+      </div>
+    </section>
+
+    <section class="content">
+      <div id="results">
+        <span style="color: #666;">Aguardando análise...</span>
+      </div>
+    </section>
+
+    <div><span>Elementos encontrados:</span></div>
+
+    <section class="content">
+      <div id="selector">
+        <span style="color: #666;">Aguardando análise...</span>
+      </div>
+    </section>
+
+
+    <div><i class="fa fa-coffee" aria-hidden="true"></i><a> Me pague um café</a></div>
+
+    <footer class="footer">
+      <p>&copy; 2026-<a>2026</a> Desenvolvido por <a>Leonardo Cuervo</a></p>
+    </footer>
+
+  <script src="./popup.js"></script>
+  <script src="./content.js"></script>
+  <script src="./engine.js"></script>
+  <script src="./selector.js"></script>
+  <script src="./selectorpick.js"></script>
+  <script src="./background.js"></script>
+  
+
+  </body>
+</html>
+
+
